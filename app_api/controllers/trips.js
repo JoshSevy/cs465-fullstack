@@ -33,7 +33,7 @@ const tripsFindByCode = async (req, res) => {
 
     // Uncomment the following to show results of query
     // in the console.
-    console.log(q);
+    // console.log(q);
 
     if (!q) {
         // Database returned no data
