@@ -13,7 +13,12 @@ var roomsRouter = require('./app_server/routes/rooms');
 var travelRouter = require('./app_server/routes/travel');
 var usersRouter = require('./app_server/routes/users');
 
+var apiRouter = require('./app_api/routes/index');
+
 var handlebars = require('hbs');
+
+// Bring in the database
+require('./app_api/models/db');
 
 var app = express();
 
@@ -31,6 +36,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Page routes
 app.use('/', indexRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);
@@ -39,6 +45,9 @@ app.use('/news', newsRouter);
 app.use('/rooms', roomsRouter);
 app.use('/travel', travelRouter);
 app.use('/users', usersRouter);
+
+// API route
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
