@@ -4,7 +4,7 @@
  * @param res
  */
 const contact = (req, res) => {
-    res.render('contact', { title: 'Contact Us' });
+    res.render('contact', { title: 'Contact Us', currentRoute: req.baseUrl || '/' });
 };
 
 /**

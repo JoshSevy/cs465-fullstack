@@ -7,7 +7,7 @@ var mealsData = JSON.parse(fs.readFileSync('./data/meals.json', 'utf8'));
  * @param res
  */
 const meals = (req, res) => {
-    res.render('meals', { title: 'Travlr Getaways', meals: mealsData });
+    res.render('meals', { title: 'Travlr Getaways', meals: mealsData, currentRoute: req.baseUrl || '/' });
 };
 
 /**
