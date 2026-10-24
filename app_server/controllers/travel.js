@@ -26,7 +26,7 @@ const travel = async function (req, res, next) {
             } else {
                 message = "No trips exist in our database!";
             }
-    res.render('travel', { title: 'Travlr Getaways', trips: json, message });
+    res.render('travel', { title: 'Travlr Getaways', trips: json, message, currentRoute: req.baseUrl || '/' });
     })
     .catch(err => res.status(500).send(err.message));
 };
@@ -50,7 +50,7 @@ const travelDetails = async (req, res, next) =>{
             } else {
                 message = "No trip details exist in our database!"; // If the response is an object but empty, set a different message
             }
-            res.render('travelDetails', { title: 'Travlr Getaways', trip: json, message }); // Render the travelDetails view with the trip data and message
+            res.render('travelDetails', { title: 'Travlr Getaways', trip: json, message, currentRoute: req.baseUrl }); // Render the travelDetails view with the trip data and message
         })
         .catch(err => res.status(500).send(err.message)); // Catch any errors during the fetch operation and send a 500 status with the error message
 };

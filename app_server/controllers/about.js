@@ -4,7 +4,7 @@
  * @param res
  */
 const about = (req, res) => {
-    res.render('about', { title: 'About Travlr' });
+    res.render('about', { title: 'About Travlr', currentRoute: req.baseUrl || '/' });
 };
 
 /**
