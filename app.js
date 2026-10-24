@@ -28,6 +28,17 @@ app.set('views', path.join(__dirname, 'app_server', 'views'));
 // Register handlebars partials (https://www.npmjs.com/package/hbs)
 handlebars.registerPartials(path.join(__dirname + '/app_server/views/partials'));
 
+/**
+ * Helper function to check if the current route matches the target route.
+ * @param currentRoute - The current route of the application.
+ * @param target - The target route to compare against.
+ * @returns {boolean} - Returns true if the current route matches the target route, otherwise false.
+ */
+handlebars.registerHelper('isActiveRoute', function (currentRoute, target) {
+  // Check if the current route matches the target route
+  return currentRoute === target;
+});
+
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
