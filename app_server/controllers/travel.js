@@ -37,10 +37,9 @@ const travel = async function (req, res, next) {
  * @param res
  */
 const travelDetails = async (req, res, next) =>{
-    console.log('TRAVEL DETAILS CONTROLLER BEGIN');
-    const tripCode = req.params.tripCode; // Get the trip ID from the query parameters
-    console.log("Req: ", req);
-    console.log("Trip ID: ", tripCode);
+    // console.log('TRAVEL DETAILS CONTROLLER BEGIN');
+    const tripCode = req.params.tripCode; // Get the trip code from the request parameters
+
     await fetch(`${tripsEndpoint}/${tripCode}`, options)
         .then(res => res.json())
         .then(json => {
