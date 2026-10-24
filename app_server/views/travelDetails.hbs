@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{trip.name}} - Travlr Getaways</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+<div id="background">
+    <div id="page">
+        {{> header}}
+        <div id="contents">
+            <div class="box">
+                <div>
+                    <div class="body">
+                        <h1>{{trip.name}}</h1>
+                        <ul id="sites">
+                            <li>
+                                <img src="/images/{{trip.image}}" alt="{{trip.name}}" width="300">
+                                <h2>Trip Details</h2>
+                                <p>
+                                    <strong>Resort:</strong> {{trip.resort}}
+                                    <br>
+                                    <strong>Duration:</strong> {{trip.length}}
+                                    <br>
+                                    <strong>Price:</strong> ${{trip.perPerson}} per person
+                                </p>
+                            </li>
+                        </ul>
+                        <h2>About This Destination</h2>
+                        <div>{{{trip.description}}}</div>
+                        <hr>
+                        <p>
+                            <a href="/travel">&larr; Back to Travel</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{> footer}}
+</div>
+</body>
+</html>
