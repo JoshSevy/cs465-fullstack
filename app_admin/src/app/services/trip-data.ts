@@ -13,11 +13,23 @@ export class TripData {
 
   constructor(private http: HttpClient) {}
 
+  addTrip(formData: Trip): Observable<Trip> {
+    // console.log("Inside TripDataService::addTrip");
+    return this.http.post<Trip>(this.url, formData);
+  }
+
+  getTrip(tripCode: string) : Observable<Trip> {
+    // console.log("Inside TripDataService::getTrip");
+    return this.http.get<Trip>(this.url + '/' + tripCode);
+  }
+
   getTrips(): Observable<Trip[]> {
+    // console.log("Inside TripDataService::getTrips");
     return this.http.get<Trip[]>(this.url);
   }
 
-  addTrip(formData: Trip): Observable<Trip> {
-    return this.http.post<Trip>(this.url, formData);
+  updateTrip(formData: Trip): Observable<Trip> {
+    // console.log("Inside TripDataService::updateTrip");
+    return this.http.put<Trip>(this.url + '/' + formData.code, formData);
   }
 }
