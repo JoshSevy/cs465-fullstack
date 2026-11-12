@@ -1,4 +1,4 @@
-import { JsonPipe, NgForOf } from '@angular/common';
+import { NgForOf } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Trip } from '../models/trip';
@@ -8,8 +8,7 @@ import { TripData } from '../services/trip-data';
 @Component({
   imports: [
     NgForOf,
-    TripCard,
-    JsonPipe
+    TripCard
   ],
   providers: [TripData],
   selector: 'app-trip-listing',
@@ -24,13 +23,13 @@ export class TripListing implements OnInit {
   constructor(
     private tripData: TripData,
     private router: Router,
-    private changeDetectorRef: ChangeDetectorRef
+    private cdr: ChangeDetectorRef
   ) {
-    console.log("trip-listing constructor");
+    // console.log("trip-listing constructor");
   }
 
   public ngOnInit(): void {
-    console.log('ngOnInit');
+    // console.log('ngOnInit');
     this.getStuff();
   }
 
@@ -46,14 +45,14 @@ export class TripListing implements OnInit {
           // For the app-trip-cards to render without moving to signals I needed to trigger change detection to follow
           // the guide books example in a zone-less angular application. I plan to convert to Ng22 with the capstone so
           // following the guide exactly.
-          this.changeDetectorRef.markForCheck();
+          this.cdr.markForCheck();
 
           if (value.length > 0) {
             this.message = 'There are ' + value.length + ' trips available.';
           } else {
             this.message = 'There are no trips retrieved from the database.';
           }
-          console.log(this.message);
+          // console.log(this.message);
         },
         error: (error: any) => {
           console.log('Error: ' + error);
