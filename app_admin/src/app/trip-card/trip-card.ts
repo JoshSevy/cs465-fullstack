@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { Trip } from '../models/trips';
+import { Component, Input } from '@angular/core';
+import { Trip } from '../models/trip';
 import { CurrencyPipe } from '@angular/common';
 
 @Component({
@@ -11,5 +11,5 @@ import { CurrencyPipe } from '@angular/common';
   templateUrl: './trip-card.html',
 })
 export class TripCard {
-  trip = input<Trip>();
+  @Input('trip') trip!: Trip;
 }
