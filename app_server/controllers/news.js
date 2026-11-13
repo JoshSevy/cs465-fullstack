@@ -4,7 +4,7 @@
  * @param res
  */
 const news = (req, res) => {
-    res.render('news', { title: 'Travlr News' });
+    res.render('news', { title: 'Travlr News', currentRoute: req.baseUrl || '/' });
 };
 
 /**
