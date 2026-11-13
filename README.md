@@ -2,6 +2,16 @@
 
 CS-465 Full Stack Development MEAN
 
+## Project Roadmap
+
+Follow the [Travlr Getaways project board](https://github.com/users/JoshSevy/projects/4) for completed coursework, upcoming assignments, and proposed capstone enhancements. The board links implementation pull requests, supporting evidence, and planning issues.
+
+- **CS-465 — Full Stack Development I:** Progress from an Express-hosted static website through MVC routing, Handlebars templates, JSON-driven content, MongoDB persistence, REST APIs, and an Angular administrative SPA. Modules 1–6 document this foundation; Module 7 adds authentication and authorization.
+- **Full Stack Development II:** Build on the course baseline, with deliverables to be scoped after reviewing the next course's syllabus and requirements.
+- **Capstone modernization:** Preserve the guide-based implementation and evolve it through database migration of rooms, meals, and blog content; Angular modernization; deliberate state management; automated testing; and security improvements. GraphQL is an optional evaluation, subject to a demonstrated benefit over the existing REST API.
+
+The board separates **Completed**, **Upcoming**, **In Progress**, and **Backlog** work. Completed coursework does not necessarily mean its pull request has been merged; PR status remains the source of truth for integration.
+
 ### Architecture
 
 Compare and contrast the types of frontend development you used in your full stack project, including Express HTML,
