@@ -1,6 +1,8 @@
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { Authentication } from '../services/authentication';
 import { Trip } from '../models/trip';
 import { TripCard } from '../trip-card/trip-card';
 import { TripData } from '../services/trip-data';
@@ -8,7 +10,8 @@ import { TripData } from '../services/trip-data';
 @Component({
   imports: [
     NgForOf,
-    TripCard
+    TripCard,
+    NgIf
   ],
   providers: [TripData],
   selector: 'app-trip-listing',
@@ -21,6 +24,7 @@ export class TripListing implements OnInit {
   message: string = '';
 
   constructor(
+    private authenticationService: Authentication,
     private tripData: TripData,
     private router: Router,
     private cdr: ChangeDetectorRef
@@ -58,5 +62,9 @@ export class TripListing implements OnInit {
           console.log('Error: ' + error);
         }
       })
+  }
+
+  public isLoggedIn(): boolean {
+    return this.authenticationService.isLoggedIn();
   }
 }
