@@ -13,7 +13,12 @@ var roomsRouter = require('./app_server/routes/rooms');
 var travelRouter = require('./app_server/routes/travel');
 var usersRouter = require('./app_server/routes/users');
 
+var apiRouter = require('./app_api/routes/index');
+
 var handlebars = require('hbs');
+
+// Bring in the database
+require('./app_api/models/db');
 
 var app = express();
 
@@ -23,6 +28,17 @@ app.set('views', path.join(__dirname, 'app_server', 'views'));
 // Register handlebars partials (https://www.npmjs.com/package/hbs)
 handlebars.registerPartials(path.join(__dirname + '/app_server/views/partials'));
 
+/**
+ * Helper function to check if the current route matches the target route.
+ * @param currentRoute - The current route of the application.
+ * @param target - The target route to compare against.
+ * @returns {boolean} - Returns true if the current route matches the target route, otherwise false.
+ */
+handlebars.registerHelper('isActiveRoute', function (currentRoute, target) {
+  // Check if the current route matches the target route
+  return currentRoute === target;
+});
+
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
@@ -31,6 +47,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Enable CORS for admin app
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200'); // Allow requests from the admin app
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  next();
+});
+
+// Page routes
 app.use('/', indexRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);
@@ -40,6 +65,8 @@ app.use('/rooms', roomsRouter);
 app.use('/travel', travelRouter);
 app.use('/users', usersRouter);
 
+// API route
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
