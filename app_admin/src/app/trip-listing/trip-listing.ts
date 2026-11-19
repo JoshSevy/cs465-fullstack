@@ -1,6 +1,7 @@
 import { NgForOf } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { Trip } from '../models/trip';
 import { TripCard } from '../trip-card/trip-card';
 import { TripData } from '../services/trip-data';
@@ -11,14 +12,15 @@ import { TripData } from '../services/trip-data';
     TripCard
   ],
   providers: [TripData],
+  standalone: true,
   selector: 'app-trip-listing',
   styleUrl: './trip-listing.css',
   templateUrl: './trip-listing.html'
 })
 export class TripListing implements OnInit {
-  trips: Array<Trip> = [];
+  public trips: Array<Trip> = [];
 
-  message: string = '';
+  public message: string = '';
 
   constructor(
     private tripData: TripData,
@@ -33,10 +35,16 @@ export class TripListing implements OnInit {
     this.getStuff();
   }
 
+  /**
+   * Navigates to the add-trip page for adding a new trip.
+   */
   public addTrip(): void {
     void this.router.navigate(['add-trip']);
   }
 
+  /**
+   * Retrieves the list of trips from the trip data service.
+   */
   private getStuff(): void {
     this.tripData.getTrips()
       .subscribe({

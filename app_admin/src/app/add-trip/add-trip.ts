@@ -1,7 +1,8 @@
+import { NgClass, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgClass, NgIf } from '@angular/common';
+
 import { TripData } from '../services/trip-data';
 
 @Component({
@@ -10,13 +11,14 @@ import { TripData } from '../services/trip-data';
     NgClass,
     NgIf
   ],
+  standalone: true,
   selector: 'app-add-trip',
   styleUrl: './add-trip.css',
   templateUrl: './add-trip.html',
 })
 export class AddTrip implements OnInit {
-  addForm!: FormGroup;
-  submitted = false;
+  public addForm!: FormGroup;
+  public submitted: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
