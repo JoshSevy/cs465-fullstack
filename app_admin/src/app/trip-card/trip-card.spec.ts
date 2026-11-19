@@ -22,8 +22,8 @@ describe('TripCard', () => {
   beforeEach(async () => {
     router = { navigate: vi.fn().mockResolvedValue(true) };
     await TestBed.configureTestingModule({
-      imports: [TripCard],
-      providers: [{ provide: Router, useValue: router }]
+      imports: [ TripCard ],
+      providers: [ { provide: Router, useValue: router } ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TripCard);
@@ -49,6 +49,6 @@ describe('TripCard', () => {
     component.editTrip(trip);
 
     expect(localStorage.getItem('tripCode')).toBe('CLRR210621');
-    expect(router.navigate).toHaveBeenCalledWith(['edit-trip']);
+    expect(router.navigate).toHaveBeenCalledWith([ 'edit-trip' ]);
   });
 });

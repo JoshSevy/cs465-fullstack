@@ -33,7 +33,7 @@ describe('EditTrip', () => {
     };
     router = { navigate: vi.fn().mockResolvedValue(true) };
     await TestBed.configureTestingModule({
-      imports: [EditTrip],
+      imports: [ EditTrip ],
       providers: [
         { provide: TripData, useValue: tripData },
         { provide: Router, useValue: router }
@@ -74,6 +74,6 @@ describe('EditTrip', () => {
     await fixture.whenStable();
 
     expect(tripData.updateTrip).toHaveBeenCalledWith(component.editForm.value);
-    expect(router.navigate).toHaveBeenCalledWith(['']);
+    expect(router.navigate).toHaveBeenCalledWith([ '' ]);
   });
 });

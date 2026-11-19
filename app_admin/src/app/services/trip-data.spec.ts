@@ -1,8 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
-import {
-  HttpTestingController,
-  provideHttpClientTesting
-} from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Trip } from '../models/trip';
 import { TripData } from './trip-data';
@@ -47,9 +44,9 @@ describe('TripData', () => {
 
     const request = httpTesting.expectOne('http://localhost:3000/api/trips');
     expect(request.request.method).toBe('GET');
-    request.flush([galeReef]);
+    request.flush([ galeReef ]);
 
-    expect(response).toEqual([galeReef]);
+    expect(response).toEqual([ galeReef ]);
   });
 
   it('should retrieve a scuba trip by code', () => {

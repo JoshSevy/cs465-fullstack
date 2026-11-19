@@ -1,5 +1,9 @@
+// Uncomment to use static trip data instead of the trip data service.
+// May use for test data in future testing coverage post assignments.
 //
-// export const trips: Array<any> = [
+// import { Trip } from '../models/trip';
+//
+// export const trips: Array<Trip> = [
 //   {
 //     "code": "GALR210214",
 //     "name": "Gale Reef",

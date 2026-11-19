@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
-import { TripData } from '../services/trip-data';
+
 import { AddTrip } from './add-trip';
+import { TripData } from '../services/trip-data';
 
 describe('AddTrip', () => {
   let component: AddTrip;
@@ -18,7 +19,7 @@ describe('AddTrip', () => {
     };
     router = { navigate: vi.fn().mockResolvedValue(true) };
     await TestBed.configureTestingModule({
-      imports: [AddTrip],
+      imports: [ AddTrip ],
       providers: [
         { provide: TripData, useValue: tripService },
         { provide: Router, useValue: router }
@@ -71,6 +72,6 @@ describe('AddTrip', () => {
       ...formValue,
       _id: null
     });
-    expect(router.navigate).toHaveBeenCalledWith(['']);
+    expect(router.navigate).toHaveBeenCalledWith([ '' ]);
   });
 });

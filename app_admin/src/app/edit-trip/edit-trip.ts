@@ -2,6 +2,7 @@ import { DatePipe, formatDate, NgClass, NgIf } from "@angular/common";
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
+
 import { Trip } from '../models/trip';
 import { TripData } from '../services/trip-data';
 
@@ -13,15 +14,16 @@ import { TripData } from '../services/trip-data';
     NgClass
   ],
   selector: 'app-edit-trip',
+  standalone: true,
   styleUrl: './edit-trip.css',
   templateUrl: './edit-trip.html',
   providers: [DatePipe]
 })
 export class EditTrip implements OnInit {
   public editForm!: FormGroup;
-  trip!: Trip;
-  submitted = false;
-  message : string = '';
+  public trip!: Trip;
+  public submitted: boolean = false;
+  public message : string = '';
 
   // get the form short name to access the form fields
   get f() { return this.editForm.controls; }
@@ -98,14 +100,18 @@ export class EditTrip implements OnInit {
    * @param {string} dateString
    * @returns {string}
    */
-  formattedDate(dateString: string): string | null {
+  public formattedDate(dateString: string): string | null {
     if (!dateString) {
       return '';
     }
     return this.datePipe.transform(dateString, 'yyyy-MM-dd');
   }
 
-  onSubmit() {
+  /**
+   * Handles form submission for editing a trip. If the form is valid, it calls the TripData service to update the trip
+   * in the database and navigates back to the home page upon success.
+   */
+  public onSubmit() {
     this.submitted = true;
     if (this.editForm.valid) {
       this.tripDataService.updateTrip(this.editForm.value)
